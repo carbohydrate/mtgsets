@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { App } from './pages/app.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css'
-import ErrorPage from './pages/error-page.tsx';
+import { ErrorPage } from './pages/error-page.tsx';
 import { SetTable } from './pages/set-table.tsx';
 
 const router = createBrowserRouter([
