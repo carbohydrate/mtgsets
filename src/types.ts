@@ -1,34 +1,258 @@
-// export type Set = {
-//     baseSetSize: number;
-//     block?: string;
-//     booster?: object;
-//     cards: CardSet[];
-//     cardsphereSetId?: number;
-//     code: string;
-//     codeV3?: string;
-//     isForeignOnly?: boolean;
-//     isFoilOnly: boolean;
-//     isNonFoilOnly?: boolean;
-//     isOnlineOnly: boolean;
-//     isPaperOnly?: boolean;
-//     isPartialPreview?: boolean;
-//     keyruneCode: string;
-//     languages: string[];
-//     mcmId?: number;
-//     mcmIdExtras?: number;
-//     mcmName?: string;
-//     mtgoCode?: string;
-//     name: string;
-//     parentCode?: string;
-//     releaseDate: string;
-//     sealedProduct?: SealedProduct;
-//     tcgplayerGroupId?: number;
-//     //tokens: CardToken[];
-//     tokenSetCode?: string;
-//     totalSetSize: number;
-//     translations: Translations;
-//     type: string;
-// };
+export type CardSet = {
+    artist?: string;
+    asciiName?: string;
+    attractionLights?: string[];
+    availability: string[];
+    boosterTypes?: string[];
+    borderColor: string;
+    cardParts?: string[];
+    colorIdentity: string[];
+    colorIndicator?: string[];
+    colors: string[];
+    convertedManaCost: number;
+    defense?: string;
+    edhrecRank?: number;
+    edhrecSaltiness?: number;
+    faceConvertedManaCost?: number;
+    faceFlavorName?: string;
+    faceManaValue?: number;
+    faceName?: string;
+    finishes: string[];
+    flavorName?: string;
+    flavorText?: string;
+    foreignData?: ForeignData[];
+    frameEffects?: string[];
+    frameVersion: string;
+    hand?: string;
+    hasAlternativeDeckLimit?: boolean;
+    hasContentWarning?: boolean;
+    hasFoil: boolean;
+    hasNonFoil: boolean;
+    identifiers: Identifiers;
+    isAlternative?: boolean;
+    isFullArt?: boolean;
+    isFunny?: boolean;
+    isOnlineOnly?: boolean;
+    isOversized?: boolean;
+    isPromo?: boolean;
+    isRebalanced?: boolean;
+    isReprint?: boolean;
+    isReserved?: boolean;
+    isStarter?: boolean;
+    isStorySpotlight?: boolean;
+    isTextless?: boolean;
+    isTimeshifted?: boolean;
+    keywords?: string[];
+    language: string;
+    layout: string;
+    leadershipSkills?: LeadershipSkills;
+    legalities: Legalities;
+    life?: string;
+    loyalty?: string;
+    manaCost?: string;
+    manaValue: number;
+    name: string;
+    number: string;
+    originalPrintings?: string[];
+    originalReleaseDate?: string;
+    originalText?: string;
+    originalType?: string;
+    otherFaceIds?: string[];
+    power?: string;
+    printings?: string[];
+    promoTypes?: string[];
+    purchaseUrls: PurchaseUrls;
+    rarity: string;
+    relatedCards?: RelatedCards;
+    rebalancedPrintings?: string[];
+    rulings: Rulings[];
+    securityStamp?: string;
+    setCode: string;
+    side?: string;
+    signature?: string;
+    subsets?: string[];
+    subtypes: string[];
+    supertypes: string[];
+    text?: string;
+    toughness?: string;
+    type: string;
+    types: string[];
+    uuid: string;
+    variations?: string[];
+    watermark?: string;
+};
+
+export type CardToken = {
+    artist?: string;
+    asciiName?: string;
+    availability: string[];
+    boosterTypes?: string[];
+    borderColor: string;
+    cardParts?: string[];
+    colorIdentity: string[];
+    colorIndicator?: string[];
+    colors: string[];
+    faceName?: string;
+    faceFlavorName?: string;
+    finishes: string[];
+    flavorText?: string;
+    frameEffects?: string[];
+    frameVersion: string;
+    hasFoil: boolean;
+    hasNonFoil: boolean;
+    identifiers: Identifiers;
+    isFullArt?: boolean;
+    isFunny?: boolean;
+    isOnlineOnly?: boolean;
+    isPromo?: boolean;
+    isReprint?: boolean;
+    keywords?: string[];
+    language: string;
+    layout: string;
+    loyalty?: string;
+    name: string;
+    number: string;
+    orientation?: string;
+    otherFaceIds?: string[];
+    power?: string;
+    promoTypes?: string[];
+    relatedCards: RelatedCards;
+    reverseRelated?: string[];
+    securityStamp?: string;
+    setCode: string;
+    side?: string;
+    signature?: string;
+    subsets?: string[];
+    subtypes: string[];
+    supertypes: string[];
+    text?: string;
+    toughness?: string;
+    type: string;
+    types: string[];
+    uuid: string;
+    watermark?: string;
+};
+
+export type ForeignData = {
+    faceName?: string;
+    flavorText?: string;
+    language: string;
+    multiverseId?: number;
+    name: string;
+    text?: string;
+    type?: string;
+};
+
+export type Identifiers = {
+    cardKingdomEtchedId?: string;
+    cardKingdomFoilId?: string;
+    cardKingdomId?: string;
+    cardsphereId?: string;
+    mcmId?: string;
+    mcmMetaId?: string;
+    mtgArenaId?: string;
+    mtgjsonFoilVersionId?: string;
+    mtgjsonNonFoilVersionId?: string;
+    mtgjsonV4Id?: string;
+    mtgoFoilId?: string;
+    mtgoId?: string;
+    multiverseId?: string;
+    scryfallId?: string;
+    scryfallOracleId?: string;
+    scryfallIllustrationId?: string;
+    tcgplayerProductId?: string;
+    tcgplayerEtchedProductId?: string;
+};
+
+export type LeadershipSkills = {
+    brawl: boolean;
+    commander: boolean;
+    oathbreaker: boolean;
+};
+
+export type Legalities = {
+    alchemy?: string;
+    brawl?: string;
+    commander?: string;
+    duel?: string;
+    explorer?: string;
+    future?: string;
+    gladiator?: string;
+    historic?: string;
+    historicbrawl?: string;
+    legacy?: string;
+    modern?: string;
+    oldschool?: string;
+    pauper?: string;
+    penny?: string;
+    pioneer?: string;
+    predh?: string;
+    premodern?: string;
+    standard?: string;
+    vintage?: string;
+};
+
+export type PurchaseUrls = {
+    cardKingdom?: string;
+    cardKingdomEtched?: string;
+    cardKingdomFoil?: string;
+    cardmarket?: string;
+    tcgplayer?: string;
+    tcgplayerEtched?: string;
+};
+
+export type RelatedCards = {
+    reverseRelated?: string[];
+    spellbook?: string[];
+};
+
+export type Rulings = {
+    date: string;
+    text: string;
+};
+
+export type SealedProduct = {
+    category?: string;
+    identifiers: Identifiers;
+    name: string;
+    productSize?: number;
+    purchaseUrls: PurchaseUrls;
+    releaseDate: string | null;
+    subtype?: string;
+    uuid: string;
+};
+
+export type Set = {
+    baseSetSize: number;
+    block?: string;
+    booster?: object;
+    cards: CardSet[];
+    cardsphereSetId?: number;
+    code: string;
+    codeV3?: string;
+    isForeignOnly?: boolean;
+    isFoilOnly: boolean;
+    isNonFoilOnly?: boolean;
+    isOnlineOnly: boolean;
+    isPaperOnly?: boolean;
+    isPartialPreview?: boolean;
+    keyruneCode: string;
+    languages: string[];
+    mcmId?: number;
+    mcmIdExtras?: number;
+    mcmName?: string;
+    mtgoCode?: string;
+    name: string;
+    parentCode?: string;
+    releaseDate: string;
+    sealedProduct?: SealedProduct[];
+    tcgplayerGroupId?: number;
+    tokens: CardToken[];
+    tokenSetCode?: string;
+    totalSetSize: number;
+    translations: Translations;
+    type: string;
+};
 
 //type SetListType = 'alchemy' | 'archenemy' | 'arsenal' | 'box' | 'commander' | 'core' | 'draft_innovation' | 'duel_deck' | 'expansion' | 'from_the_vault' | 'funny' | 'masterpiece' | 'masters' | 'memorabilia' | 'minigame' | 'planechase' | 'premium_deck' | 'promo' | 'spellbook' | 'starter' | 'token' | 'treasure_chest' | 'vanguard'
 
@@ -59,38 +283,6 @@ export type SetList = {
     type: string;
 };
 
-export type SealedProduct = {
-    category?: string;
-    identifiers: Identifiers;
-    name: string;
-    productSize?: number;
-    purchaseUrls: PurchaseUrls;
-    releaseDate: string | null;
-    subtype?: string;
-    uuid: string;
-};
-
-export type Identifiers = {
-    cardKingdomEtchedId?: string;
-    cardKingdomFoilId?: string;
-    cardKingdomId?: string;
-    cardsphereId?: string;
-    mcmId?: string;
-    mcmMetaId?: string;
-    mtgArenaId?: string;
-    mtgjsonFoilVersionId?: string;
-    mtgjsonNonFoilVersionId?: string;
-    mtgjsonV4Id?: string;
-    mtgoFoilId?: string;
-    mtgoId?: string;
-    multiverseId?: string;
-    scryfallId?: string;
-    scryfallOracleId?: string;
-    scryfallIllustrationId?: string;
-    tcgplayerProductId?: string;
-    tcgplayerEtchedProductId?: string;
-};
-
 export type Translations = {
     "Ancient Greek"?: string;
     Arabic?: string;
@@ -108,13 +300,4 @@ export type Translations = {
     Russian?: string;
     Sanskrit?: string;
     Spanish?: string;
-};
-
-export type PurchaseUrls = {
-    cardKingdom?: string;
-    cardKingdomEtched?: string;
-    cardKingdomFoil?: string;
-    cardmarket?: string;
-    tcgplayer?: string;
-    tcgplayerEtched?: string;
 };
