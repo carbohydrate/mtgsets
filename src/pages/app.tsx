@@ -15,7 +15,6 @@ const keyruneSymbol = (keyruneCode: string) => {
 }
 
 export const App: React.FC = () => {
-    //const setList: SetList[] = mtgJsonSetList.data;
     const setList: SetList[] = useMemo(() => {
         const list = mtgJsonSetList.data;
         const filteredSortedSets = list.filter(x => x.type === 'expansion').sort((a, b) => sortRelease(a.releaseDate, b.releaseDate));
