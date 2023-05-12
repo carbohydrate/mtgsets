@@ -5,11 +5,12 @@ import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
 import { Paper, PaperProps, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, styled } from '@mui/material';
 import { SetSizeTooltip } from './components/set-size-tooltip';
+import computedData from '../data/computed.json';
 
 const PaperComp = styled(Paper)<PaperProps>(({ theme }) => ({
     //maxHeight: 800,
     // color: 'red',
-    // backgroundColor: 'red'
+    backgroundColor: theme.palette.secondary.main,
 }));
 
 const sortRelease = (a: string, b: string) => {
@@ -43,22 +44,25 @@ export const SetsTable: React.FC = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {setList.map(set => (
-                        <TableRow
-                            key={set.name}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            {/* don't use mui <Link>, need to use react-router. default a href will cause http round-trip on click 
-                                wrapping in typography to get a little styling.
-                                There are other ways: https://mui.com/material-ui/guides/composition/#component-prop */}
-                            <TableCell component="th" scope='row'><Link to={`/set/${set.code}`}>{set.name}</Link></TableCell>
-                            <TableCell><i className={keyruneSymbol(set.keyruneCode)}></i></TableCell>
-                            <TableCell>{set.code}</TableCell>
-                            <TableCell>{DateTime.fromISO(set.releaseDate).toLocaleString(DateTime.DATE_FULL)}</TableCell>
-                            <TableCell><SetSizeTooltip common={1}>{set.baseSetSize}</SetSizeTooltip></TableCell>
-                            <TableCell>{set.totalSetSize}</TableCell>
-                        </TableRow>
-                    ))}
+                    {setList.map(set => {
+                        const commons = computedData.find(x => x.code === set.code)?.c || 0;
+                        return (
+                            <TableRow
+                                key={set.name}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                {/* don't use mui <Link>, need to use react-router. default a href will cause http round-trip on click 
+                                    wrapping in typography to get a little styling.
+                                    There are other ways: https://mui.com/material-ui/guides/composition/#component-prop */}
+                                <TableCell component="th" scope='row'><Link to={`/set/${set.code}`}>{set.name}</Link></TableCell>
+                                <TableCell><i className={keyruneSymbol(set.keyruneCode)}></i></TableCell>
+                                <TableCell>{set.code}</TableCell>
+                                <TableCell>{DateTime.fromISO(set.releaseDate).toLocaleString(DateTime.DATE_FULL)}</TableCell>
+                                <TableCell><SetSizeTooltip common={commons}>{set.baseSetSize}</SetSizeTooltip></TableCell>
+                                <TableCell>{set.totalSetSize}</TableCell>
+                            </TableRow>
+                        );
+                    })}
                 </TableBody>
             </Table>
         </TableContainer>
