@@ -3,14 +3,21 @@ import mtgJsonSetList from '../../mtgjson/SetList.json';
 import { SetList } from '../types';
 import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Paper, PaperProps, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, styled } from '@mui/material';
+import { SetSizeTooltip } from './components/set-size-tooltip';
+
+const PaperComp = styled(Paper)<PaperProps>(({ theme }) => ({
+    //maxHeight: 800,
+    // color: 'red',
+    // backgroundColor: 'red'
+}));
 
 const sortRelease = (a: string, b: string) => {
     return DateTime.fromISO(a).toMillis() - DateTime.fromISO(b).toMillis();
 }
 
 const keyruneSymbol = (keyruneCode: string) => {
-    const codeString = `ss ss-${keyruneCode.toLowerCase()} ss-3x`;
+    const codeString = `ss ss-${keyruneCode.toLowerCase()} ss-2x`;
     return codeString;
 }
 
@@ -23,8 +30,8 @@ export const SetsTable: React.FC = () => {
     }, []);
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} stickyHeader size='small' aria-label="sets table">
+        <TableContainer component={PaperComp}>
+            <Table sx={{ minWidth: 650 }} stickyHeader size='small' aria-label='sets table'>
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
@@ -48,7 +55,7 @@ export const SetsTable: React.FC = () => {
                             <TableCell><i className={keyruneSymbol(set.keyruneCode)}></i></TableCell>
                             <TableCell>{set.code}</TableCell>
                             <TableCell>{DateTime.fromISO(set.releaseDate).toLocaleString(DateTime.DATE_FULL)}</TableCell>
-                            <TableCell>{set.baseSetSize}</TableCell>
+                            <TableCell><SetSizeTooltip common={1}>{set.baseSetSize}</SetSizeTooltip></TableCell>
                             <TableCell>{set.totalSetSize}</TableCell>
                         </TableRow>
                     ))}
