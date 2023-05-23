@@ -9,7 +9,7 @@ import { SetsTable } from './pages/sets-table.tsx';
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: '/mtgsets',
         element: <App />,
         errorElement: <ErrorPage />,
         children: [
