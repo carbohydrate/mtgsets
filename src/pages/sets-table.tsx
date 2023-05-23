@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import mtgJsonSetList from '../../mtgjson/SetList.json';
+import mtgJsonSetList from '../data/SetList.json';
 import { SetList } from '../types';
 import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
@@ -25,7 +25,11 @@ const keyruneSymbol = (keyruneCode: string) => {
 export const SetsTable: React.FC = () => {
     const setList: SetList[] = useMemo(() => {
         const list = mtgJsonSetList.data;
-        const filteredSortedSets = list.filter(x => x.type === 'expansion').sort((a, b) => sortRelease(a.releaseDate, b.releaseDate));
+
+        // remove sealed product from all elements as there is some missing release dates on newer data in sealed product and types require it
+        // need to rewrite some of this to not use downloaded json files
+        const removedSealedProduct = list.map(({ sealedProduct, ...keepAttrs }) => keepAttrs);
+        const filteredSortedSets = removedSealedProduct.filter(x => x.type === 'expansion').sort((a, b) => sortRelease(a.releaseDate, b.releaseDate));
 
         return filteredSortedSets;
     }, []);
