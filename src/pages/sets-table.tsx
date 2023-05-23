@@ -40,12 +40,21 @@ export const SetsTable: React.FC = () => {
                         <TableCell>Code</TableCell>
                         <TableCell>Release</TableCell>
                         <TableCell>Base Size</TableCell>
+                        <TableCell>C</TableCell>
+                        <TableCell>UC</TableCell>
+                        <TableCell>R</TableCell>
+                        <TableCell>M</TableCell>
+                        <TableCell title='Computed Totals'>Total</TableCell>
                         <TableCell>Total Size</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {setList.map(set => {
                         const commons = computedData.find(x => x.code === set.code)?.c || 0;
+                        const uncommons = computedData.find(x => x.code === set.code)?.u || 0;
+                        const rares = computedData.find(x => x.code === set.code)?.r || 0;
+                        const mythics = computedData.find(x => x.code === set.code)?.m || 0;
+                        const total = commons + uncommons + rares + mythics;
                         return (
                             <TableRow
                                 key={set.name}
@@ -54,11 +63,16 @@ export const SetsTable: React.FC = () => {
                                 {/* don't use mui <Link>, need to use react-router. default a href will cause http round-trip on click 
                                     wrapping in typography to get a little styling.
                                     There are other ways: https://mui.com/material-ui/guides/composition/#component-prop */}
-                                <TableCell component="th" scope='row'><Link to={`/set/${set.code}`}>{set.name}</Link></TableCell>
+                                <TableCell><Link to={`set/${set.code}`} preventScrollReset={false}>{set.name}</Link></TableCell>
                                 <TableCell><i className={keyruneSymbol(set.keyruneCode)}></i></TableCell>
                                 <TableCell>{set.code}</TableCell>
                                 <TableCell>{DateTime.fromISO(set.releaseDate).toLocaleString(DateTime.DATE_FULL)}</TableCell>
                                 <TableCell><SetSizeTooltip common={commons}>{set.baseSetSize}</SetSizeTooltip></TableCell>
+                                <TableCell>{commons}</TableCell>
+                                <TableCell>{uncommons}</TableCell>
+                                <TableCell>{rares}</TableCell>
+                                <TableCell>{mythics}</TableCell>
+                                <TableCell>{total}</TableCell>
                                 <TableCell>{set.totalSetSize}</TableCell>
                             </TableRow>
                         );
