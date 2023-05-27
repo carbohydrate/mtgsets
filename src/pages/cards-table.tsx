@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
-import { Set } from '../types';
+import { Set } from '../mtgjson-types';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { axiosGetSet } from '../api/api';
 

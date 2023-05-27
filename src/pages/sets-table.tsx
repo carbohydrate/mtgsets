@@ -1,15 +1,13 @@
 import React, { useMemo } from 'react';
-import mtgJsonSetList from '../data/SetList.json';
-import { SetList } from '../types';
+import setListComputed from '../../data/set-list-computed.json';
 import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
 import { Paper, PaperProps, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, styled } from '@mui/material';
 import { SetSizeTooltip } from './components/set-size-tooltip';
-import computedData from '../data/computed.json';
+import computedData from '../../data/computed.json';
+import { SetListComputed } from '../types';
 
 const PaperComp = styled(Paper)<PaperProps>(({ theme }) => ({
-    //maxHeight: 800,
-    // color: 'red',
     backgroundColor: theme.palette.secondary.main,
 }));
 
@@ -23,15 +21,10 @@ const keyruneSymbol = (keyruneCode: string) => {
 }
 
 export const SetsTable: React.FC = () => {
-    const setList: SetList[] = useMemo(() => {
-        const list = mtgJsonSetList.data;
+    const setList: SetListComputed[] = useMemo(() => {
+        const sortedSets = setListComputed.sort((a, b) => sortRelease(a.releaseDate, b.releaseDate));
 
-        // remove sealed product from all elements as there is some missing release dates on newer data in sealed product and types require it
-        // need to rewrite some of this to not use downloaded json files
-        const removedSealedProduct = list.map(({ sealedProduct, ...keepAttrs }) => keepAttrs);
-        const filteredSortedSets = removedSealedProduct.filter(x => x.type === 'expansion').sort((a, b) => sortRelease(a.releaseDate, b.releaseDate));
-
-        return filteredSortedSets;
+        return sortedSets;
     }, []);
 
     return (

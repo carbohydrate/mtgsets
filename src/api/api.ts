@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Set } from '../types';
+import { Set } from '../mtgjson-types';
 
 export const axiosGetSet = async (code: string): Promise<Set> => {
     const url = `https://mtgjson.com/api/v5/${code}.json`;

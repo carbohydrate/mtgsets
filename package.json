@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "computed": "ts-node utils/computed.ts",
+    "computed:set-list": "ts-node utils/set-list-computed.ts",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

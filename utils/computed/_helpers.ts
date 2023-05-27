@@ -1,4 +1,4 @@
-import { Set } from '../../src/types.js';
+import { Set } from '../../src/mtgjson-types.ts';
 
 export const setSizeRarity = (set: Set) => {
     const baseSetSize = set.baseSetSize;
