@@ -11,6 +11,7 @@ const run = () => {
     filteredExpansionSets.map(set => {
         const condensedSet = {
             baseSetSize: set.baseSetSize,
+            block: set.block,
             code: set.code,
             keyruneCode: set.keyruneCode,
             name: set.name,

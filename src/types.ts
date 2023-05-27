@@ -1,5 +1,6 @@
 export type SetListComputed = {
     baseSetSize: number;
+    block?: string;
     code: string;
     keyruneCode: string;
     name: string;
