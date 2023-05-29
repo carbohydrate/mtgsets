@@ -65,7 +65,7 @@ export type CardSet = {
     rarity: string;
     relatedCards?: RelatedCards;
     rebalancedPrintings?: string[];
-    rulings: Rulings[];
+    rulings?: Rulings[];
     securityStamp?: string;
     setCode: string;
     side?: string;
@@ -217,7 +217,7 @@ export type SealedProduct = {
     name: string;
     productSize?: number;
     purchaseUrls: PurchaseUrls;
-    releaseDate: string | null;
+    releaseDate?: string;
     subtype?: string;
     uuid: string;
 };

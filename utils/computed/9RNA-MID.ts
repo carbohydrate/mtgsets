@@ -8,12 +8,11 @@ import mtgJsonSetKHM from '../../mtgjson/AllSetFiles/KHM.json' assert { type: 'j
 import mtgJsonSetSTX from '../../mtgjson/AllSetFiles/STX.json' assert { type: 'json' };
 import mtgJsonSetAFR from '../../mtgjson/AllSetFiles/AFR.json' assert { type: 'json' };
 import mtgJsonSetMID from '../../mtgjson/AllSetFiles/MID.json' assert { type: 'json' };
-import { Set } from '../../src/types.ts';
+import { Set } from '../../src/mtgjson-types.ts';
 import { setSizeRarity } from './_helpers.ts';
 import { ComputedValue } from '../computed.ts';
 
 export const run9 = () => {
-    // @ts-ignore
     const sets: Set[] = [mtgJsonSetRNA.data, mtgJsonSetWAR.data, mtgJsonSetELD.data, mtgJsonSetTHB.data, mtgJsonSetIKO.data, mtgJsonSetZNR.data, mtgJsonSetKHM.data, mtgJsonSetSTX.data, mtgJsonSetAFR.data, mtgJsonSetMID.data];
 
     const computedSetValues: ComputedValue[] = [];

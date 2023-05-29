@@ -8,7 +8,7 @@ import mtgJsonSetONS from '../../mtgjson/AllSetFiles/ONS.json' assert { type: 'j
 import mtgJsonSetLGN from '../../mtgjson/AllSetFiles/LGN.json' assert { type: 'json' };
 import mtgJsonSetSCG from '../../mtgjson/AllSetFiles/SCG.json' assert { type: 'json' };
 import mtgJsonSetMRD from '../../mtgjson/AllSetFiles/MRD.json' assert { type: 'json' };
-import { Set } from '../../src/types.ts';
+import { Set } from '../../src/mtgjson-types.ts';
 import { setSizeRarity } from './_helpers.ts';
 import { ComputedValue } from '../computed.ts';
 
