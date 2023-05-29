@@ -2,6 +2,7 @@ import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import { Set } from '../mtgjson-types';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { axiosGetSet } from '../api/api';
+import allPricesComputed from '../../data/all-prices-computed.json';
 
 export const CardsTable: React.FC = () => {
     const setData = useLoaderData() as Awaited<ReturnType<typeof loader>>;
@@ -14,6 +15,7 @@ export const CardsTable: React.FC = () => {
                         <TableCell>Number</TableCell>
                         <TableCell>Name</TableCell>
                         <TableCell>Rarity</TableCell>
+                        <TableCell>Retail Price</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -25,6 +27,7 @@ export const CardsTable: React.FC = () => {
                             <TableCell>{card.number}</TableCell>
                             <TableCell>{card.name}</TableCell>
                             <TableCell>{card.rarity}</TableCell>
+                            <TableCell>{allPricesComputed[card.uuid as keyof typeof allPricesComputed]}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
