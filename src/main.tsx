@@ -9,7 +9,7 @@ import { SetsTable } from './pages/sets-table.tsx';
 
 const router = createBrowserRouter([
     {
-        path: '/mtgsets',
+        path: '/',
         element: <App />,
         errorElement: <ErrorPage />,
         children: [
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             },
         ],
     },
-]);
+], { basename: '/mtgsets' });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
