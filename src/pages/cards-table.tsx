@@ -75,7 +75,7 @@ export const CardsTable: React.FC = () => {
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} stickyHeader size='small' aria-label="sets table">
+            <Table sx={{ minWidth: 650 }} stickyHeader size='small' aria-label="cards table">
                 <TableHead>
                     <TableRow>
                         <TableHeaderSort orderBy={orderBy} order={order} onClick={() => handleHeaderClick('number')} text={'Number'} />

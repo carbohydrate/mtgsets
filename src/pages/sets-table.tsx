@@ -15,6 +15,11 @@ const BlockRow = styled(TableRow)<TableRowProps>(({ theme }) => ({
     backgroundColor: theme.palette.secondary.main,
 }));
 
+const RouterLink = styled(Link)({
+    textDecoration: 'none',
+    color: '#000000',
+});
+
 const sortRelease = (a: string, b: string) => {
     return DateTime.fromISO(a).toMillis() - DateTime.fromISO(b).toMillis();
 }
@@ -83,9 +88,8 @@ export const SetsTable: React.FC = () => {
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     {/* don't use mui <Link>, need to use react-router. default a href will cause http round-trip on click 
-                                        wrapping in typography to get a little styling.
                                         There are other ways: https://mui.com/material-ui/guides/composition/#component-prop */}
-                                    <TableCell><Link to={`set/${set.code}`}>{set.name}</Link></TableCell>
+                                    <TableCell><RouterLink to={`set/${set.code}`}>{set.name}</RouterLink></TableCell>
                                     <TableCell><i className={keyruneSymbol(set.keyruneCode)}></i></TableCell>
                                     <TableCell>{set.code}</TableCell>
                                     <TableCell>{DateTime.fromISO(set.releaseDate).toLocaleString(DateTime.DATE_FULL)}</TableCell>
