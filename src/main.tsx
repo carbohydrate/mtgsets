@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             },
         ],
     },
-], { basename: '/mtgsets' });
+]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
