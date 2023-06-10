@@ -13,6 +13,7 @@ import { setSizeRarity } from './_helpers.ts';
 import { ComputedValue } from '../computed.ts';
 
 export const run5 = () => {
+    // @ts-ignore
     const sets: Set[] = [mtgJsonSetTSB.data, mtgJsonSetPLC.data, mtgJsonSetFUT.data, mtgJsonSetLRW.data, mtgJsonSetMOR.data, mtgJsonSetSHM.data, mtgJsonSetEVE.data, mtgJsonSetALA.data, mtgJsonSetCON.data, mtgJsonSetARB.data];
 
     const computedSetValues: ComputedValue[] = [];

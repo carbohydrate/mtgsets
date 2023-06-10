@@ -34,9 +34,9 @@ const runAll = () => {
 
     console.log('allComputedSetValues: ', allComputedSetValues);
 
-    console.log('writing out to src/data/computed.json');
+    console.log('writing out to data/computed.json');
 
-    fs.writeFileSync('src/data/computed.json', JSON.stringify(allComputedSetValues));
+    fs.writeFileSync('data/computed.json', JSON.stringify(allComputedSetValues));
 
     console.log('finished');
 };
