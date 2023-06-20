@@ -116,7 +116,7 @@ export type CardToken = {
     otherFaceIds?: string[];
     power?: string;
     promoTypes?: string[];
-    relatedCards: RelatedCards;
+    relatedCards?: RelatedCards;
     reverseRelated?: string[];
     securityStamp?: string;
     setCode: string;
