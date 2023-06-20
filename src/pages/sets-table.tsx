@@ -73,7 +73,7 @@ export const SetsTable: React.FC = () => {
                         const total = commons + uncommons + rares + mythics;
                         const block = set.block;
                         return (
-                            <>
+                            <React.Fragment key={set.name}>
                                 {block && 
                                     block !== 'Ice Age' &&
                                     block !== 'Guilds of Ravnica' &&
@@ -101,7 +101,7 @@ export const SetsTable: React.FC = () => {
                                     <TableCell align='center'>{total}</TableCell>
                                     <TableCell align='center'>{set.totalSetSize}</TableCell>
                                 </TableRow>
-                            </>
+                            </React.Fragment>
                         );
                     })}
                 </TableBody>
