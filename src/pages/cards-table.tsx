@@ -32,6 +32,17 @@ const descendingComparatorString = (a: string, b: string) => {
     return 0;
 };
 
+const raritySortOrder = ['common', 'uncommon', 'rare', 'mythic'];
+const sortRarity = (a: string, b: string) => {
+    if (raritySortOrder.indexOf(b) < raritySortOrder.indexOf(a)) {
+        return -1;
+    }
+    if (raritySortOrder.indexOf(b) > raritySortOrder.indexOf(a)) {
+        return 1;
+    }
+    return 0;
+};
+
 const getComparator = <Key extends keyof CardSetWithPrice>(
     order: Order,
     orderBy: Key,
@@ -56,6 +67,12 @@ export const CardsTable: React.FC = () => {
         if (orderBy === 'number') {
             return cardsWithPrice.sort((a, b) => {
                 return order === 'desc' ? descendingComparatorString(a['number'], b['number']) : -descendingComparatorString(a['number'], b['number']);
+            });
+        }
+
+        if (orderBy === 'rarity') {
+            return cardsWithPrice.sort((a, b) => {
+                return order === 'desc' ? sortRarity(a['rarity'], b['rarity']) : -sortRarity(a['rarity'], b['rarity']);
             });
         }
 
