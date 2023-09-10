@@ -1,9 +1,9 @@
 import { TableCell, TableSortLabel } from '@mui/material';
 import React from 'react';
-import { Order, OrderBy } from '../cards-table';
+import { Order } from '../cards-table';
 
 interface TableHeaderSortProps {
-    orderBy: OrderBy;
+    orderBy: string;
     order: Order;
     onClick: () => void;
     text: string;

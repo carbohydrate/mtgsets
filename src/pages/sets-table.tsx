@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import setListComputed from '../../data/set-list-computed.json';
 import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,8 @@ import { Paper, PaperProps, Table, TableBody, TableCell, TableContainer, TableHe
 import { SetSizeTooltip } from './components/set-size-tooltip';
 import computedData from '../../data/computed.json';
 import { SetListComputed } from '../types';
+import { TableHeaderSort } from './cards/table-header-sort';
+import { Order } from './cards-table';
 
 const PaperComp = styled(Paper)<PaperProps>(({ theme }) => ({
     backgroundColor: theme.palette.grey[50],
@@ -30,11 +32,16 @@ const keyruneSymbol = (keyruneCode: string) => {
 }
 
 export const SetsTable: React.FC = () => {
-    const setList: SetListComputed[] = useMemo(() => {
-        const sortedSets = setListComputed.sort((a, b) => sortRelease(a.releaseDate, b.releaseDate));
+    const [order, setOrder] = useState<Order>('asc');
+    const [orderBy, setOrderBy] = useState<'release'>('release');
 
-        return sortedSets;
-    }, []);
+    const setList: SetListComputed[] = useMemo(() => {
+        if (order === 'asc') {
+            return setListComputed.sort((a, b) => sortRelease(a.releaseDate, b.releaseDate));
+        } else {
+            return setListComputed.sort((a, b) => sortRelease(b.releaseDate, a.releaseDate));
+        }
+    }, [order]);
 
     const renderBlockHeader = (blockName: string, i: number) => {
         return (
@@ -46,6 +53,12 @@ export const SetsTable: React.FC = () => {
         )
     };
 
+    const handleHeaderClick = (property: 'release') => {
+        const isAsc = orderBy === 'release' && order === 'asc';
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(property);
+    };
+
     return (
         <TableContainer component={PaperComp}>
             <Table sx={{ minWidth: 650 }} stickyHeader size='small' aria-label='sets table'>
@@ -54,7 +67,7 @@ export const SetsTable: React.FC = () => {
                         <TableCell>Name</TableCell>
                         <TableCell>Symbol</TableCell>
                         <TableCell>Code</TableCell>
-                        <TableCell>Release</TableCell>
+                        <TableHeaderSort orderBy={orderBy} order={order} onClick={() => handleHeaderClick('release')} text={'Release'} />
                         <TableCell>Base Size</TableCell>
                         <TableCell>C</TableCell>
                         <TableCell>UC</TableCell>
@@ -81,7 +94,8 @@ export const SetsTable: React.FC = () => {
                                     array[i - 1]?.block !== block &&
                                     renderBlockHeader(block, i)
                                 }
-                                {set.code === 'DOM' && renderBlockHeader('Post Block Sets', i)}
+                                {set.code === 'DOM' && order === 'asc' && renderBlockHeader('Post Block Sets', i)}
+                                {set.code === 'ALL' && order === 'desc' && renderBlockHeader('Pre Block Sets', i)}
                                 {/* {blockRow} */}
                                 <TableRow
                                     key={set.name}
