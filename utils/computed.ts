@@ -8,7 +8,7 @@ import { run6 } from './computed/6ZEN-RTR.ts';
 import { run7 } from './computed/7GTC-OGW.ts';
 import { run8 } from './computed/8SOI-GRN.ts';
 import { run9 } from './computed/9RNA-MID.ts';
-import { run10 } from './computed/10VOW-MOM.ts';
+import { run10 } from './computed/10VOW-WOE.ts';
 
 export interface ComputedValue {
     code: string;

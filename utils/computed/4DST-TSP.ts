@@ -13,7 +13,9 @@ import { setSizeRarity } from './_helpers.ts';
 import { ComputedValue } from '../computed.ts';
 
 export const run4 = () => {
-    // @ts-ignore
+    // cat FUT.json | grep --color=always $'\u2028'
+    // sed -i $'s/\u2028//g' FUT.json
+    // sed -i $'s/\u2028//g' mtgjson/AllSetFiles/*.json
     const sets: Set[] = [mtgJsonSetDST.data, mtgJsonSet5DN.data, mtgJsonSetCHK.data, mtgJsonSetBOK.data, mtgJsonSetSOK.data, mtgJsonSetRAV.data, mtgJsonSetGPT.data, mtgJsonSetDIS.data, mtgJsonSetCSP.data, mtgJsonSetTSP.data];
 
     const computedSetValues: ComputedValue[] = [];
