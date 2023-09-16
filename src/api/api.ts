@@ -10,7 +10,7 @@ const get = async (url: string) => {
     }
 };
 
-export const axiosGetSetList = async (): Promise<SetList> => {
+export const axiosGetSetList = async (): Promise<SetList[]> => {
     const url = `https://mtgjson.com/api/v5/SetList.json`;
     return get(url);
 };

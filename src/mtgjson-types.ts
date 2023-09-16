@@ -279,7 +279,6 @@ export type SetList = {
     tcgplayerGroupId?: number;
     totalSetSize: number;
     translations: Translations;
-    //type: SetListType;
     type: string;
 };
 

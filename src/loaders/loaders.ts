@@ -2,8 +2,7 @@ import { LoaderFunctionArgs } from 'react-router-dom';
 import { axiosGetSet, axiosGetSetList } from '../api/api';
 import { Set, SetList } from '../mtgjson-types';
 
-export const loaderSetList = async (): Promise<SetList> => {
-    // const setCode = params.code;
+export const loaderSetList = async (): Promise<SetList[]> => {
     return await axiosGetSetList();
 };
 
