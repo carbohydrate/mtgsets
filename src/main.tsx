@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { App } from './pages/app.tsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ErrorPage } from './pages/error-page.tsx';
-import { loader, CardsTable } from './pages/cards-table.tsx';
+import { CardsTable } from './pages/cards-table.tsx';
 import { MuiTest } from './pages/mui-test.tsx';
 import { SetsTable } from './pages/sets-table.tsx';
+import { loaderSet, loaderSetList } from './loaders/loaders.ts';
 
 const router = createBrowserRouter([
     {
@@ -16,11 +17,12 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <SetsTable />,
+                loader: loaderSetList,
             },
             {
                 path: 'set/:code',
                 element: <CardsTable />,
-                loader: loader,
+                loader: loaderSet,
             },
             {
                 path: 'mui',

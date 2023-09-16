@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
-import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
-import { CardSet, Set } from '../mtgjson-types';
+import { useLoaderData } from 'react-router-dom';
+import { CardSet } from '../mtgjson-types';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { axiosGetSet } from '../api/api';
 import allPricesComputed from '../../data/all-prices-computed.json';
 import { TableHeaderSort } from './cards/table-header-sort';
+import { loaderSet } from '../loaders/loaders';
 
 export type Order = 'asc' | 'desc';
 export type OrderBy = 'number' | 'price' | 'name' | 'rarity';
@@ -54,7 +54,7 @@ const getComparator = <Key extends keyof CardSetWithPrice>(
 };
 
 export const CardsTable: React.FC = () => {
-    const setData = useLoaderData() as Awaited<ReturnType<typeof loader>>;
+    const setData = useLoaderData() as Awaited<ReturnType<typeof loaderSet>>;
     const [order, setOrder] = useState<Order>('asc');
     const [orderBy, setOrderBy] = useState<OrderBy>('number');
 
@@ -114,9 +114,4 @@ export const CardsTable: React.FC = () => {
             </Table>
         </TableContainer>
     );
-};
-
-export const loader = async ({ params }: LoaderFunctionArgs): Promise<Set> => {
-    const setCode = params.code;
-    return await axiosGetSet(setCode ? setCode : 'MOM');
 };

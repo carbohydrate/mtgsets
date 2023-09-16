@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import setListComputed from '../../data/set-list-computed.json';
 import { DateTime } from 'luxon';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { Paper, PaperProps, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableRowProps, styled } from '@mui/material';
 import { SetSizeTooltip } from './components/set-size-tooltip';
 import computedData from '../../data/computed.json';
 import { SetListComputed } from '../types';
 import { TableHeaderSort } from './cards/table-header-sort';
 import { Order } from './cards-table';
+import { loaderSetList } from '../loaders/loaders';
 
 const PaperComp = styled(Paper)<PaperProps>(({ theme }) => ({
     backgroundColor: theme.palette.grey[50],
@@ -32,6 +33,8 @@ const keyruneSymbol = (keyruneCode: string) => {
 }
 
 export const SetsTable: React.FC = () => {
+    const setListData = useLoaderData() as Awaited<ReturnType<typeof loaderSetList>>;
+    console.log('setListData: ', setListData);
     const [order, setOrder] = useState<Order>('asc');
     const [orderBy, setOrderBy] = useState<'release'>('release');
 
